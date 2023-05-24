@@ -20,13 +20,13 @@ Let’s say ABC company has three modes configured: “Business hours”, “Non
 ## Create an operation mode "emergency"
 
 ### 1. To add an emergency mode, go to **Calls->Settings->Call screening** tab.
-![img Call Settings](/img/call-settings.png)
+![img Call Settings](./img/call-settings.png)
 ### 2. Scroll down the list until you see **+Add Module** button.
-![img Call Settings Add mode](/img/call-settings-add-mode.png)
+![img Call Settings Add mode](./img/call-settings-add-mode.png)
 ### 3. Fill in `Name`, `DTMF code` and `Expires after`.
-![img Call Settings Add Mode dialog](/img/call-settings-add-mode-dialog.png)
+![img Call Settings Add Mode dialog](./img/call-settings-add-mode-dialog.png)
 ### 4. Add new rule to the policy, in case of emergency mode - treat the calls in a special way.
-![img Call Settings Add Rule dialog](/img/call-settings-add-rule-dialog.png)
+![img Call Settings Add Rule dialog](./img/call-settings-add-rule-dialog.png)
 
 ## Test the emergency mode
 
