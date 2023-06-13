@@ -11,15 +11,16 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://olegshevtsov.github.io',
+  url: 'https://portaone.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/portal-docs-public/',
+  baseUrl: '/cloudpbx-portal-docs/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'olegshevtsov', // Usually your GitHub org/user name.
-  projectName: 'portal-docs-public', // Usually your repo name.
+  organizationName: 'portaone', // Usually your GitHub org/user name.
+  projectName: 'cloudpbx-portal-docs', // Usually your repo name.
+  trailingSlash: false,
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -42,17 +43,20 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/olegshevtsov/portal-docs/tree/development/',
+            'https://github.com/portaone/cloudpbx-portal-docs-source/tree/development/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/olegshevtsov/portal-docs/tree/development/',
+            'https://github.com/portaone/cloudpbx-portal-docs-source/tree/development/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
+        },
+        googleTagManager: {
+          containerId: 'GTM-M6NJB2D',
         },
       }),
     ],
@@ -78,7 +82,7 @@ const config = {
           },
           {to: '/blog', label: 'News and release notes', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/portaone',
             label: 'GitHub',
             position: 'right',
           },
@@ -122,7 +126,7 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/portaone',
               },
             ],
           },
