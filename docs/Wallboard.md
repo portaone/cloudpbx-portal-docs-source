@@ -8,7 +8,7 @@ sidebar_position: 3
 
 The wallboard functionality is a powerful tool that enables managers to monitor agent performance, gain insights into call volumes, and even integrate external systems for a comprehensive view of their call center's operations.
 
-| Select if you want the widget data to be presented as Table or Donut chart |
+| Select if you want the widget data to be presented as Table or Donut chart. |
 | --- |
 
 Open menu "**Cloud PBX** \> **Wallboard**".
