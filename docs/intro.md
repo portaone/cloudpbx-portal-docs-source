@@ -57,7 +57,7 @@ Open menu "**Inventory** \> **Devices**" and click "**Add new**". Select the mod
 
 You can generate a device name which will consist of its model and MAC address.
 
-*e.g. Yealink 22:33:CD:44:55:66*
+*e.g. Yealink 22:33:AD:44:55:66*
 
 ## Portal users
 
