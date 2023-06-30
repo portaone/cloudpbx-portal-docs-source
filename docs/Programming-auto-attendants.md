@@ -16,7 +16,7 @@ The auto-attendant may be composed of a set of independent menus (for example, o
 
 ![](./img/Programming_auto-attendants-Menus.png)
 
-## Always active auto-attendants
+## Auto-attendants with always active menus
 
 The flow of incoming calls to an auto-attendant number is always routed to menu "**ROOT**" first.
 
@@ -52,7 +52,7 @@ Click "**+**" on tab "**Call flow**" or open a selected menu and open tab "**Act
 | Enable option "Play before action" to upload a prompt that must be played prior to the selected action. |
 | --- |
 
-## Auto-attendants with custom schedules
+## Auto-attendants with menus that have custom schedules
 
 The auto-attendant may be composed of a set of independent menus that can be active at different times.
 
