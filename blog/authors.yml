@@ -1,3 +1,6 @@
+blog_author:
+  name: BLOG_AUTHOR_NAME
+
 sat:
   name: Oleg Shevtsov
   title: Head of PMD
