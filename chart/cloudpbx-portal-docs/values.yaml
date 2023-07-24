@@ -1,0 +1,67 @@
+# Default values for cloudpbx-portal-docs.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: registry.portaone.com/ipaas/portals/cloudpbx-portal-docs
+  pullPolicy: Always #IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+blogAuthorName: ""
+customerGithub: ""
+companyName: ""
+companyLinkein: ""
+companyYoutube: ""
+companyTwitter: ""
+companyBlog: ""
+logoFile: "brand-logo.svg"
+logo: ""
+favicon: ""
+
+monitoring:
+  alerts:
+    enabled: true
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  host:
+    name: chart-example.local
+    path: /
+  tls:
+    enabled: false
+    issuerName: ""
+    secretName: ""
+    secretAutoCreate: false
+    key: ""
+    crt: ""
+
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

@@ -1,4 +1,6 @@
-#!/usr/bin/env sh
+#!/usr/bin/bash
+
+set -x
 
 replacementString='';
 #replacementString='s,API_BASE_URL,'"$API_BASE_URL"',g';
@@ -123,7 +125,7 @@ handle_company_blog() {
 
 
 handle_base_path() {
-    if [ -z "$BASE_PATH" ]
+    if [[ -z "$BASE_PATH" || "$BASE_PATH" == "/" ]];
     then
         BASE_PATH='/'
     else
@@ -140,6 +142,8 @@ handle_base_path() {
         location=$(echo "$BASE_PATH" | sed -E 's,/+$,,');
         nginxConfReplacementString=$(echo "$nginxConfReplacementString"';s,PATH_WITHOUT_END_SLASH,'"$location"',');
     fi
+
+    replacementString=$(echo "$replacementString"';s#\/BASE_PATH\/#'"$BASE_PATH"'#g');
 
     # adjust nginx configuration
     sed -i -e "$nginxConfReplacementString" "$nginxConfPath";

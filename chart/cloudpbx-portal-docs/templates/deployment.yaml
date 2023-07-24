@@ -1,0 +1,101 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "cloudpbx-portal-docs.fullname" . }}
+  labels:
+    {{- include "cloudpbx-portal-docs.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "cloudpbx-portal-docs.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        checksum/image: {{ printf "%s_%s" .Values.image.repository (.Values.image.tag | default .Chart.AppVersion) | default "none" | sha256sum }}
+        checksum/config: {{ include (print $.Chart.Name "/templates/env.yaml") . | sha256sum }}
+        checksum/logo: {{ include (print $.Chart.Name "/templates/logo.yaml") . | sha256sum }}
+        checksum/favicon: {{ include (print $.Chart.Name "/templates/favicon.yaml") . | sha256sum }}
+        checksum/secret: {{ include (print $.Chart.Name "/templates/tls-secret.yaml") . | sha256sum }}
+      labels:
+        {{- include "cloudpbx-portal-docs.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name:  {{ include "cloudpbx-portal-docs.fullname" . }}-env
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          {{- if or (.Values.logo) (.Values.favicon) }}
+          volumeMounts:
+          {{- if .Values.logo }}
+            - name: logo-vol
+              mountPath: {{ printf "%s%s" "/usr/share/nginx/html/img/mounted/" .Values.logoFile }}
+              subPath: {{ .Values.logoFile }}
+            - name: logo-vol-de
+              mountPath: {{ printf "%s%s" "/usr/share/nginx/html/de/img/mounted/" .Values.logoFile }}
+              subPath: {{ .Values.logoFile }}
+          {{- end }}
+          {{- if .Values.favicon }}
+            - name: favicon-vol
+              mountPath: /usr/share/nginx/html/img/favicon.ico
+              subPath: favicon.ico
+            - name: favicon-vol-de
+              mountPath: /usr/share/nginx/html/de/img/favicon.ico
+              subPath: favicon.ico
+          {{- end }}
+          {{- end }}
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- if or (.Values.logo) (.Values.favicon) }}
+      volumes:
+      {{- if .Values.logo }}
+        - name: logo-vol
+          configMap:
+            name: {{ include "cloudpbx-portal-docs.fullname" . }}-logo
+        - name: logo-vol-de
+          configMap:
+            name: {{ include "cloudpbx-portal-docs.fullname" . }}-logo
+      {{- end }}
+      {{- if .Values.favicon }}
+        - name: favicon-vol
+          configMap:
+            name: {{ include "cloudpbx-portal-docs.fullname" . }}-favicon
+        - name: favicon-vol-de
+          configMap:
+            name: {{ include "cloudpbx-portal-docs.fullname" . }}-favicon
+      {{- end }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
