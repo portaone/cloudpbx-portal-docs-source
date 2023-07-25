@@ -1,0 +1,98 @@
+{{- if .Values.ingress.enabled }}
+{{- if .Values.ingress.tls.secretAutoCreate }}
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ .Values.ingress.host.name }}
+spec:
+  secretName: {{ .Values.ingress.tls.secretName }}
+  secretTemplate:
+    annotations:
+      meta.helm.sh/release-name: {{ .Release.Name }}
+      meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+      app.kubernetes.io/managed-by: Helm
+    labels:
+      app.kubernetes.io/managed-by: Helm
+  issuerRef:
+    name: {{ .Values.ingress.tls.issuerName }}
+    kind: Issuer
+  commonName: {{ .Values.ingress.host.name }}
+  dnsNames:
+  - {{ .Values.ingress.host.name }}
+{{- end }}
+{{- end }}
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ include "cloudpbx-portal-docs.fullname" . }}-strip-prefix
+  annotations:
+    kubernetes.io/ingress.class: {{ .Values.ingress.class }}
+spec:
+  stripPrefix:
+    prefixes:
+      - "{{ .Values.ingress.host.path }}"
+    forceSlash: true
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ include "cloudpbx-portal-docs.fullname" . }}-redirect-scheme
+  annotations:
+    kubernetes.io/ingress.class: {{ .Values.ingress.class }}
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+    port: "443"
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ include "cloudpbx-portal-docs.fullname" . }}-http
+  annotations:
+    kubernetes.io/ingress.class: {{ .Values.ingress.class }}
+  {{- with .Values.ingress.annotations }}
+  {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`{{ .Values.ingress.host.name }}`) && PathPrefix(`{{ .Values.ingress.host.path }}`)
+      kind: Rule
+      services:
+        - kind: Service
+          name: {{ include "cloudpbx-portal-docs.fullname" . }}
+          namespace: {{ .Release.Namespace }}
+          port: {{ .Values.service.port }}
+      middlewares:
+        - name: {{ include "cloudpbx-portal-docs.fullname" . }}-redirect-scheme
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ include "cloudpbx-portal-docs.fullname" . }}-https
+  annotations:
+    kubernetes.io/ingress.class: {{ .Values.ingress.class }}
+  {{- with .Values.ingress.annotations }}
+  {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`{{ .Values.ingress.host.name }}`) && PathPrefix(`{{ .Values.ingress.host.path }}`)
+      services:
+        - kind: Service
+          name: {{ include "cloudpbx-portal-docs.fullname" . }}
+          namespace: {{ .Release.Namespace }}
+          port: {{ .Values.service.port }}
+          scheme: http
+  {{- if .Values.ingress.tls.enabled }}
+  tls:
+    secretName: {{ .Values.ingress.tls.secretName }}
+    domains:
+      - main: {{ .Values.ingress.host }}
+  {{- end }}
