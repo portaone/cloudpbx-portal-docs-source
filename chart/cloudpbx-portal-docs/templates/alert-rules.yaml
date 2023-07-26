@@ -11,7 +11,7 @@ spec:
       rules:
         - alert: CloudPBXPortalDocsDown
           annotations:
-            message: 'Cloud PBX is down'
+            message: 'Cloud PBX portal docs is down'
           expr: (count(kube_pod_container_status_ready{namespace="{{ .Release.Namespace }}", container="{{ .Chart.Name }}"}) or vector(0)) == 0
           for: 1m
           labels:
@@ -20,7 +20,7 @@ spec:
             portaProduct: cloudpbx-portal-docs
         - alert: CloudPBXPortalDocsRestartLoop
           annotations:
-            message: 'Cloud PBX is restarting {{`{{ printf "%.2f" $value }}`}} times / 3 minutes.'
+            message: 'Cloud PBX portal docs is restarting {{`{{ printf "%.2f" $value }}`}} times / 3 minutes.'
           expr: rate(kube_pod_container_status_restarts_total{namespace="{{ .Release.Namespace }}", container="{{ .Chart.Name }}"}[3m]) * 60 * 5 > 0
           for: 3m
           labels:
@@ -29,7 +29,7 @@ spec:
             portaProduct: cloudpbx-portal-docs
         - alert: CloudPBXPortalDocsNotReady
           annotations:
-            message: 'Cloud PBX has been in a non-ready state for longer than 1 minutes.'
+            message: 'Cloud PBX portal docs has been in a non-ready state for longer than 1 minutes.'
           expr: sum by(pod) (kube_pod_status_phase{namespace="{{ .Release.Namespace }}", pod=~"{{ include "cloudpbx-portal-docs.fullname" . }}.*", phase=~"Pending|Unknown"}) > 0
           for: 1m
           labels:
@@ -38,7 +38,7 @@ spec:
             portaProduct: cloudpbx-portal-docs
         - alert: CloudPBXPortalDocsReplicasLow
           annotations:
-            message: 'Cloud PBX has been scaled down critically'
+            message: 'Cloud PBX portal docs has been scaled down critically'
           expr: kube_deployment_status_replicas{namespace="{{ .Release.Namespace }}", deployment=~"{{ .Release.Name }}"} < 1 or kube_deployment_status_replicas_unavailable{namespace="{{ .Release.Namespace }}", deployment=~"{{ .Release.Name }}"} > 0
           for: 1m
           labels:
