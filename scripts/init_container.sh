@@ -149,6 +149,10 @@ handle_base_path() {
     sed -i -e "$nginxConfReplacementString" "$nginxConfPath";
 }
 
+handle_de_lang() {
+    sed -i -z "s#        location \/ {#        location ${BASE_PATH}de\/ {\n            alias \/usr\/share\/nginx\/html\/de\/;\n            try_files \$uri \$uri\/ \/de\/index.html;\n        }\n        location\ \/ {#" "$nginxConfPath"
+}
+
 # process variables values
 handle_logo
 handle_favicon
@@ -160,6 +164,7 @@ handle_company_twitter
 handle_company_youtube
 handle_company_blog
 handle_base_path
+handle_de_lang
 
 
 # replace variables placeholders with their values
