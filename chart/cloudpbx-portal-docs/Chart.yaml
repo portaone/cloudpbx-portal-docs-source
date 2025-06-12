@@ -1,0 +1,6 @@
+apiVersion: v2
+name: cloudpbx-portal-docs
+description: A Helm chart for CloudPBX docs
+type: application
+version: 0.1.0
+appVersion: "1.16.0"

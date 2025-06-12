@@ -1,5 +1,5 @@
 ---
-title: Getting Started
+title: Getting started
 sidebar_position: 1
 ---
 
@@ -58,6 +58,25 @@ Open menu "**Inventory** \> **Devices**" and click "**Add new**". Select the mod
 You can generate a device name which will consist of its model and MAC address.
 
 *e.g. Yealink 22:33:AD:44:55:66*
+
+With Bring-Your-Own-Device (BYOD) support, it is possible to manage your own IP phones:
+
+1. Add/upload your IP phones in menu "**Inventory** \> **Devices**". To upload the IP phones, you can first download the file template (with all available columns in the required order) and then fill in the mandatory columns:
+
+* Action ("add" or "+")
+* Device name
+* Device model
+* MAC address
+
+![](./img/Getting_started-File_example.png)
+
+
+![](./img/Getting_started-Upload_new_devices.png)
+
+2. Change the provisioning server address on the IP phones (check it with the service provider).
+3. Assign the IP phones to the employees’ phone lines (extensions).
+
+![](./img/Getting_started-Assign_device.png)
 
 ## Portal users
 

@@ -1,0 +1,22 @@
+{
+  "title": {
+    "message": "Cloud Call Center docs",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Cloud Call Center documentation logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Tutorials": {
+    "message": "Tutorials",
+    "description": "Navbar item with label Tutorials"
+  },
+  "item.label.News and release notes": {
+    "message": "News and release notes",
+    "description": "Navbar item with label News and release notes"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  }
+}
