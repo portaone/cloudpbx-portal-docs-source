@@ -11,7 +11,7 @@ type FeatureItem = {
 const FeatureList: FeatureItem[] = [
   {
     title: 'Learn the solution',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    Svg: require('@site/static/img/rocket.svg').default,
     description: (
       <>
         Learn the solution to get your Cloud Call Center up and running quickly.
@@ -20,7 +20,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Focus on productivity',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    Svg: require('@site/static/img/goal.svg').default,
     description: (
       <>
         With our tutorials you will get best effeciency.
@@ -29,7 +29,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Stay updated',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    Svg: require('@site/static/img/update.svg').default,
     description: (
       <>
         Check News and release notes to know what to try next.
