@@ -1,7 +1,8 @@
 ---
+title: PIN Protection for Outgoing Paid Calls
 sidebar_position: 3
 ---
-# PIN protection for outgoing paid calls outside of your Cloud PBX
+# PIN Protection for Outgoing Paid Calls Outside of Your Cloud PBX
 
 Oftentimes, businesses require additional authorization for outgoing tolls on international calls. Especially in the case of a single phone being shared among multiple users. PIN protection can be enabled for a particular product (main or add-on) assigned to extensions.
 

@@ -94,5 +94,5 @@ Navigate to **Cloud PBX → Extensions**, open the extension, and scroll to the 
 | **File format** | Audio format for the attached recording (e.g. WAV, MP3). |
 
 :::tip
-If you want callers to reach voicemail after a number of rings with no answer, configure the **Call forwarding** rules on the extension — set a **No answer** forward to the voicemail destination.
+If you want callers to reach voicemail after a number of rings with no answer, open the extension's **Call settings** tab and set the **Default answering mode** to **Ring then Voicemail**. Use the **Timeout** parameter to control how long the phone rings before the call is forwarded to voicemail.
 :::

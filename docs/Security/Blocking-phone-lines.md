@@ -1,7 +1,8 @@
 ---
+title: Blocking Phone Lines
 sidebar_position: 4
 ---
-# Blocking phone lines
+# Blocking Phone Lines
 
 Sometimes, you may need to block/unblock specific phone lines. For example, your company occasionally hires for seasonal sales campaigns. When a campaign ends and a specialist leaves, your company blocks their extension (the service provider doesn’t charge a subscription fee for the days when a phone line is blocked). You may later unblock it when a specialist starts working again.
 
