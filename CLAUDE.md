@@ -16,12 +16,14 @@ Two-level hierarchy mirroring the portal navigation:
 
 ```
 docs/
-├── Getting_Started.md
+├── intro.md                     ← site introduction / overview
 ├── Cloud_PBX/
 │   ├── _category_.json
 │   ├── img/<Feature>/           ← screenshots live here
 │   └── Extensions.md, Ring_Groups.md, Auto_Attendants.md, Fax_Mailboxes.md,
-│       Phone_Book.md, Call_Parking_Slots.md, Wallboard.md
+│       Phone_Book.md, Call_Parking_Slots.md, Wallboard.md,
+│       Business_Hours.md, Call_Supervision.md,
+│       Voicemail.md, Automated_Call_Distribution.md
 ├── Calls/
 │   ├── _category_.json
 │   ├── img/<Feature>/
@@ -33,11 +35,18 @@ docs/
 │   ├── _category_.json
 │   ├── img/<Feature>/
 │   └── Devices.md, Device_Profiles.md, Device_Phone_Books.md, DID_Numbers.md
-└── My_Company/
+├── My_Company/
+│   ├── _category_.json
+│   ├── img/<Feature>/
+│   └── My_Profile.md, Portal_Users.md, Company_Info.md, Billing.md, Licensing.md
+└── Security/
     ├── _category_.json
-    ├── img/<Feature>/
-    └── My_Profile.md, Portal_Users.md, Company_Info.md, Billing.md
+    ├── img/<Feature>/           ← if screenshots are needed
+    └── Two-factor-authentication.md, Allow-web-access-only-from-trusted-IP-addresses.mdx,
+        Blocking-phone-lines.md, PIN-protection-for-outgoing-paid-calls.md
 ```
+
+**Note:** `Getting_Started.md` has been replaced by `intro.md` at the docs root.
 
 **Image paths:**
 - File: `docs/<Section>/img/<Feature>/screenshot.png`
@@ -56,6 +65,27 @@ Follow the **Auto-Dialer_User_Guide.md** style:
 - Markdown tables for field reference sections
 - Image syntax: `![Title](./img/Feature/name.png "Title")`
 - `*` marks required fields in tables
+
+**Admonitions (important notes / tips / warnings):**
+
+Use Docusaurus admonition syntax — **no space** between `:::` and the type:
+
+```md
+:::note
+The languages that are currently supported are …
+:::
+
+:::tip
+You can copy an existing profile instead of creating one from scratch.
+:::
+```
+
+**Never** use the old single-column table style:
+```md
+| Some important text |
+| --- |
+```
+Replace those with `:::note … :::` blocks.
 
 **Navigation lines** belong in the Overview section, after the description paragraph. Use this format exactly:
 
@@ -76,15 +106,42 @@ Examples:
 
 ## Adding Documentation for a New Feature
 
-1. Browse the live portal at `https://cloudpbx.portaone.com`
-2. Search `docs.portaone.com` for business logic behind the feature
-3. Read the portal source: component files, e2e page objects (selectors/fields), translation keys
-   - Translation keys: `../src/translations/`
-   - E2E page objects: `../e2e_tests/`
-   - Routes: `../src/routes/routes.ts`
-4. Write `docs/<Section>/<Feature>.md`
-5. Write `screenshot-gen/capture-<feature>.ts`
-6. Add a `screenshots:<feature>` script to `package.json`
+### Step 1 — Discover the UI using the browser MCP
+
+**Always use the browser MCP (Claude in Chrome) first** to explore the live portal before writing anything.
+This is the primary source of truth for UI labels, tab names, field names, and page structure.
+
+```
+navigate → https://cloudpbx.portaone.com
+screenshot / snapshot → identify all tabs, fields, dialogs, and states to document
+```
+
+For each page:
+- Take a snapshot/screenshot of the list view
+- Open the add/create dialog — note all fields and their labels exactly
+- Open a detail/edit page — note every tab and the fields within each tab
+- Look for any conditional UI (e.g. fields that appear only when a toggle is enabled)
+
+Use `get_page_text` or `snapshot` to read actual label text — do not guess from source code alone.
+
+### Step 2 — Research business logic
+
+Search `docs.portaone.com` for the underlying PortaSwitch/PortaBilling concepts behind the feature.
+
+### Step 3 — Read the portal source
+
+Cross-reference with source code to confirm selectors, routes, and any fields not visible in a default state:
+- Translation keys: `../src/translations/`
+- E2E page objects: `../e2e_tests/`
+- Routes: `../src/routes/routes.ts`
+
+### Step 4 — Write the doc
+
+Write `docs/<Section>/<Feature>.md` following the writing style above.
+
+### Step 5 — Write the screenshot script
+
+Write `screenshot-gen/capture-<feature>.ts` and add a `screenshots:<feature>` script to `package.json`.
 
 ---
 
@@ -108,6 +165,32 @@ npm run screenshots:extensions
 ```
 npm run screenshots
 ```
+
+**Available screenshot scripts** (in `package.json`):
+
+| Script | Status |
+|---|---|
+| `screenshots:sip-trunks` | ✅ |
+| `screenshots:extensions` | ✅ |
+| `screenshots:ring-groups` | ✅ |
+| `screenshots:fax-mailboxes` | ✅ |
+| `screenshots:call-parking-slots` | ✅ |
+| `screenshots:call-settings` | ✅ |
+| `screenshots:call-activity` | ✅ |
+| `screenshots:recordings` | ✅ |
+| `screenshots:voicemail` | ✅ |
+| `screenshots:did-numbers` | ✅ |
+| `screenshots:devices` | ✅ |
+| `screenshots:device-profiles` | ✅ |
+| `screenshots:device-phone-books` | ✅ |
+| `screenshots:my-profile` | ✅ |
+| `screenshots:portal-users` | ✅ |
+| `screenshots:company-info` | ✅ |
+| `screenshots:billing` | ✅ |
+
+**No capture script yet** (docs exist but screenshots not automated):
+`auto-attendants`, `phone-book`, `wallboard`, `business-hours`, `call-supervision`,
+`licensing`, `security/*`, `automated-call-distribution`
 
 ---
 
@@ -219,15 +302,37 @@ Prefer direct URL navigation to detail pages when available (`/fax-mailboxes/<id
 
 ## Portal Routes Reference
 
-Always verify routes against `../src/routes/routes.ts`. Common traps:
+Always verify routes against `../src/routes/routes.ts`. Complete route list:
 
 | Feature | Actual route |
 |---|---|
-| Call parking slots | `/parking-slots` (NOT `/call-parking-slots`) |
-| Call activity | `/call-activity` |
-| Call settings | `/call-settings` |
-| Call recordings | `/call-recordings` |
-| Fax mailboxes | `/fax-mailboxes` |
+| Extensions (list) | `/extensions` |
+| Extension detail | `/extensions/:id` |
+| Ring Groups (list) | `/ring-groups` |
+| Ring Group detail | `/ring-groups/:id` |
+| Auto Attendants (list) | `/auto-attendants` |
+| Auto Attendant detail | `/auto-attendants/:id` |
+| Fax Mailboxes | `/fax-mailboxes` |
+| Phone Book | `/phone-book` |
+| Call Parking Slots | `/parking-slots` (NOT `/call-parking-slots`) |
+| Wallboard | `/wallboard` |
+| Call Supervision | `/supervisor-panel` |
+| Call Activity | `/call-activity` |
+| Call Recordings | `/call-recordings` |
+| Call Settings | `/call-settings` |
+| SIP Trunks | `/sip-trunks` |
+| DID Numbers | `/did-numbers` |
+| Devices | `/devices` |
+| Device Profiles | `/device-profiles` |
+| Device Phone Books | `/device-phone-books` |
+| My Company / Company Info | `/my-company` |
+| My Profile | `/my-profile` |
+| Portal Users | `/portal-users` |
+| Billing | `/billing` |
+| Payment Invoices | `/payment-invoices` |
+| Dashboard | `/dashboard` |
+
+**Note:** Business Hours, Voicemail, ACD, Licensing, and Security articles are **not standalone routes** — they are tabs within other pages or tutorial-style articles. Do not attempt to navigate to them by URL.
 
 ---
 

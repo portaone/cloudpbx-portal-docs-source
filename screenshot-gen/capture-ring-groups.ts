@@ -27,6 +27,15 @@ test('capture ring-groups screenshots', async ({ page }) => {
   // --- List page ---
   await page.screenshot({ path: path.join(OUTPUT, 'ring-groups-list.png') });
 
+  // --- Add dialog ---
+  await page.getByRole('button', { name: 'Add new' }).click();
+  await page.waitForSelector('[data-testid="create-extension-form"]', { state: 'visible' });
+  await page.waitForTimeout(600);
+  await page.screenshot({ path: path.join(OUTPUT, 'ring-groups-add-dialog.png') });
+  await page.getByRole('button', { name: 'Cancel' }).click();
+  await page.waitForSelector('[role="dialog"]', { state: 'detached' });
+  await page.waitForTimeout(400);
+
   // Navigate to first ring group via edit button (index 1 = pencil, index 0 = call history)
   const firstEditBtn = page
     .locator('tbody tr')

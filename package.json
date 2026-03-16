@@ -24,7 +24,13 @@
     "screenshots:fax-mailboxes": "playwright test --config=screenshot-gen/playwright.config.ts capture-fax-mailboxes",
     "screenshots:call-parking-slots": "playwright test --config=screenshot-gen/playwright.config.ts capture-call-parking-slots",
     "screenshots:call-settings": "playwright test --config=screenshot-gen/playwright.config.ts capture-call-settings",
-    "screenshots:call-activity": "playwright test --config=screenshot-gen/playwright.config.ts capture-call-activity"
+    "screenshots:call-activity": "playwright test --config=screenshot-gen/playwright.config.ts capture-call-activity",
+    "screenshots:did-numbers": "playwright test --config=screenshot-gen/playwright.config.ts capture-did-numbers",
+    "screenshots:recordings": "playwright test --config=screenshot-gen/playwright.config.ts capture-recordings",
+    "screenshots:voicemail": "playwright test --config=screenshot-gen/playwright.config.ts capture-voicemail",
+    "screenshots:devices": "playwright test --config=screenshot-gen/playwright.config.ts capture-devices",
+    "screenshots:device-profiles": "playwright test --config=screenshot-gen/playwright.config.ts capture-device-profiles",
+    "screenshots:device-phone-books": "playwright test --config=screenshot-gen/playwright.config.ts capture-device-phone-books"
   },
   "dependencies": {
     "@docusaurus/core": "^2.4.3",

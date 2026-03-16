@@ -28,6 +28,20 @@ Use the **Number**, **Name**, and **Included extension** filters to search. Clic
 
 Click **+ Add new** to create a new ring group.
 
+## Adding a Ring Group
+
+![Add ring group dialog](./img/Ring_Groups/ring-groups-add-dialog.png "Add ring group dialog")
+
+| Field | Description |
+|---|---|
+| **Name*** | Display name for the ring group. |
+| **Number*** | The internal number dialled to reach this ring group. |
+| **Caller ID*** | Controls what caller ID is presented to ring group members when a call arrives (e.g. *Original caller*). |
+| **Ring strategy** | How member extensions are called: *Order*, *Random*, *Simultaneous*, or *Least used*. |
+| **Call pickup allowed** | Toggle to allow extensions outside the group to pick up calls ringing in this group. |
+
+Click **Save** to create the ring group. Members and call queue settings can be configured from the detail page afterwards.
+
 ## Ring Group Detail
 
 Click **Edit** to open a ring group. The header shows the ring group number and the active ring strategy. The detail page contains three tabs.
