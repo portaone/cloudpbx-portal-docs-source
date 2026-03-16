@@ -9,7 +9,7 @@ sidebar_position: 1
 
 **Extensions** are the individual phone lines assigned to users within your Cloud PBX. Each extension has a unique number and an optional DID (direct inward dialling) number for external calls. Extensions support voicemail, call forwarding, call screening, call recording, and other features depending on the assigned plan.
 
-Open menu **"Cloud PBX > Extensions"** (route: `/extensions`).
+Navigate to **Cloud PBX → Extensions**.
 
 ## Extensions List
 

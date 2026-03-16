@@ -17,9 +17,9 @@ Phone books can be populated in three ways:
 | **Auto-sync** | The phone book is automatically populated from your company's extensions. The list stays up to date as extensions are added or removed |
 | **CSV import** | Contacts are imported from a comma-separated file |
 
-## Device Phone Books List
-
 Navigate to **Inventory → Device phone books**.
+
+## Device Phone Books List
 
 ![Device Phone Books List](./img/Device_Phone_Books/device-phone-books-list.png "Device Phone Books List")
 

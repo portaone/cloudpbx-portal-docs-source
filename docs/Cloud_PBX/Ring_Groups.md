@@ -9,7 +9,7 @@ sidebar_position: 2
 
 **Ring groups** distribute incoming calls to a set of member extensions. When a call arrives at the ring group number, the system rings the members according to the configured strategy. An optional call queue holds callers when all members are busy, playing hold music and announcements until an agent is available.
 
-Open menu **"Cloud PBX > Ring groups"** (route: `/ring-groups`).
+Navigate to **Cloud PBX → Ring groups**.
 
 ## Ring Groups List
 

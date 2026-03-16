@@ -22,8 +22,9 @@ All of this can be done using the call screening rules in your Cloud PBX. When t
 
 When a new call arrives at your Cloud PBX, call information is sequentially checked against all defined call screening rules. The call information (ANI, DNIS, and current time) is checked against each rule's conditions. If at least one of these does not match, the rule is skipped and processing moves on to the next one. If there is a match for all three conditions, then the rule's actions are executed and no further rules are processed.
 
-| The order of rules matters. When the call arrives at Cloud PBX, it checks the rules from top to bottom. The first rule that matches the call is applied, and the other rules are ignored. |
-| --- |
+:::note
+The order of rules matters. When the call arrives at Cloud PBX, it checks the rules from top to bottom. The first rule that matches the call is applied, and the other rules are ignored.
+:::
 
 Open menu "**Calls** \> **Settings** \> **Call screening**" and change the order of rules using drag and drop.
 
@@ -49,8 +50,9 @@ Let's say your company has three modes configured: "**Business hours**", "**Non-
 
 ### Add a New Mode
 
-| "Default" mode is present in the system. The DTMF code of the "Default" mode is always zero (0). This DTMF code is used to switch to this mode. Users can switch from individual sticky mode to "Default" mode to continue receiving calls according to the rules defined for the "Default" mode. |
-| --- |
+:::note
+"Default" mode is present in the system. The DTMF code of the "Default" mode is always zero (0). This DTMF code is used to switch to this mode. Users can switch from individual sticky mode to "Default" mode to continue receiving calls according to the rules defined for the "Default" mode.
+:::
 
 Open menu "**Calls** \> **Settings** \> **Call screening**" and click "**Add mode**" to configure a new mode. You can set the following parameters for a mode:
 
@@ -70,8 +72,9 @@ You can upload different audio files to be used as response messages for your co
 
 ![](./img/Business_Hours/Calls_within_business_hours_and_non-working_hours-Add_new_response_messages.png)
 
-| The audio message can be in .wav, .mp3, .og, or .au format and should not exceed the size of 3 MB. |
-| --- |
+:::note
+The audio message can be in .wav, .mp3, .og, or .au format and should not exceed the size of 3 MB.
+:::
 
 The message, added by Cloud PBX users, always overrides the default message added by the Cloud PBX manager, no matter whether it is recorded via the IVR or uploaded via the web portal.
 

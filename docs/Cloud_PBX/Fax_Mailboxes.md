@@ -9,7 +9,7 @@ sidebar_position: 4
 
 **Fax mailboxes** allow your Cloud PBX to receive incoming faxes and deliver them as email attachments. Each fax mailbox has a dedicated extension number and an optional DID number for receiving faxes from external callers. Received faxes are forwarded to a configured email address in the format and action of your choice.
 
-Open menu **"Cloud PBX > Fax mailboxes"** (route: `/fax-mailboxes`).
+Navigate to **Cloud PBX → Fax mailboxes**.
 
 ## Fax Mailboxes List
 

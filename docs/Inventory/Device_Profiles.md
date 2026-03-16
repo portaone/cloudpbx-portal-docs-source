@@ -19,9 +19,9 @@ A **device profile** is a configuration template for a specific IP phone model. 
 
 Configuration files are regenerated automatically whenever a profile is saved, so changes are pushed to all phones using that profile on their next reboot or provisioning cycle.
 
-## Device Profiles List
-
 Navigate to **Inventory → Device profiles**.
+
+## Device Profiles List
 
 ![Device Profiles List](./img/Device_Profiles/device-profiles-list.png "Device Profiles List")
 

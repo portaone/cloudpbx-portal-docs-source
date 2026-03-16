@@ -15,9 +15,9 @@ The **Devices** section is where you register and manage the IP phones used by y
 
 PortaSwitch generates a configuration file unique to each phone's MAC address. When the phone boots, it downloads this file and registers automatically — no manual SIP configuration on the phone is required provided auto-provisioning is enabled.
 
-## Devices List
+Navigate to **Inventory → Devices**.
 
-Navigate to **Inventory → Devices** to see all registered phones.
+## Devices List
 
 ![Devices List](./img/Devices/devices-list.png "Devices List")
 

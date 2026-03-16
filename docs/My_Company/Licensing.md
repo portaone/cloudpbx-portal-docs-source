@@ -16,8 +16,9 @@ Open the **Dashboard** to check the terms and conditions regarding the use of pr
 Your licensing terms define the set of **main products** that your administrators can add to your service package via the Cloud PBX portal.
 *e.g. "Up to 10 Cloud PBX phone lines for $30/month"*
 
-| Check out the maximum number of phone lines with a specific product that your users may have on the Dashboard. |
-| --- |
+:::tip
+Check out the maximum number of phone lines with a specific product that your users may have on the Dashboard.
+:::
 
 ### Add a New Extension
 
@@ -33,8 +34,9 @@ You can assign an IP phone to this extension to make sure that the phone gets au
 
 Open tab "**Plan**" to change the main product for a selected extension.
 
-| Check out the maximum number of phone lines with a specific product that your users may have. |
-| --- |
+:::tip
+Check out the maximum number of phone lines with a specific product that your users may have.
+:::
 
 ![](./img/Licensing/Licensing-Change_main_product.png)
 
@@ -55,8 +57,9 @@ Your licensing terms also define the set of **add-on products** that your admini
 
 *e.g. "Unlimited voicemail boxes, $5/month per each"*
 
-| Check out the maximum number of phone lines with a specific product that your users may have on the Dashboard. |
-| --- |
+:::tip
+Check out the maximum number of phone lines with a specific product that your users may have on the Dashboard.
+:::
 
 Add-on products can be activated on tab "**Plan**".
 

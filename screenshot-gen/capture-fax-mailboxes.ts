@@ -20,9 +20,11 @@ test('capture fax-mailboxes screenshots', async ({ page }) => {
   // Navigate to Fax Mailboxes list
   await page.goto(process.env.BASE_URL + '/fax-mailboxes');
   await page.waitForSelector('[data-testid="loader"]', { state: 'detached' });
-  await page.waitForSelector('tbody tr', { state: 'visible', timeout: 20000 }).catch(() => {});
+  await page.waitForLoadState('networkidle');
+  const addNewBtn = page.locator('button').filter({ hasText: /Add new/i });
+  await addNewBtn.waitFor({ state: 'visible', timeout: 20000 });
   await page.waitForSelector('.MuiCircularProgress-root', { state: 'detached', timeout: 15000 }).catch(() => {});
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(1200);
 
   // --- List page ---
   await page.screenshot({ path: path.join(OUTPUT, 'fax-mailboxes-list.png') });

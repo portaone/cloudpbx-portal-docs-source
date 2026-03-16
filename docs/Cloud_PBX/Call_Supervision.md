@@ -9,8 +9,9 @@ sidebar_position: 10
 
 Cloud PBX managers can supervise their colleagues' calls in real time. For example, a manager can listen in on a sales agent's calls, guide them, and, if needed, participate in the calls.
 
-| Make sure "Call supervision" is enabled for your Cloud PBX. |
-| --- |
+:::note
+Make sure "Call supervision" is enabled for your Cloud PBX.
+:::
 
 Call supervision is available in three modes:
 

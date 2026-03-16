@@ -9,7 +9,7 @@ sidebar_position: 4
 
 **Company Info** stores the contact and address details for your organisation as registered with the service provider. This information may appear on invoices and other correspondence.
 
-Open menu "**My company** \> **Company info**" (route: `/my-company`).
+Navigate to **My company → Company info**.
 
 If your organisation has branch offices, the page shows two tabs: **Main (HQ)** and **Branch (Site)**. If there are no branches, all fields appear on a single form.
 
@@ -60,5 +60,8 @@ Click **Save** to apply any changes.
 
 If your Cloud PBX account includes branch offices, the **Branch (Site)** tab lets you view the contact details for each branch. Select a branch from the dropdown to switch between offices.
 
-| Branch office details are read-only in the portal. Contact your service provider to update branch information. |
-| --- |
+![Company info – Branch Site tab](./img/Company_Info/company-info-branch.png "Company info – Branch Site tab")
+
+:::note
+Branch office details are read-only in the portal. Contact your service provider to update branch information.
+:::

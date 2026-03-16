@@ -9,7 +9,7 @@ sidebar_position: 3
 
 **Portal Users** is where you manage who has access to your Cloud PBX portal and what they can do. Each portal user has a login, a role that defines their permissions, and optionally an email address and access restrictions.
 
-Open menu "**My company** \> **Portal users**" to see the list of all users.
+Navigate to **My company → Portal users**.
 
 ## Portal Users List
 
@@ -75,7 +75,7 @@ The **Security** tab provides two security controls:
 
 Toggle **Two-factor authentication (2FA)** on or off for this user. When enabled, the user must enter a one-time password from an authenticator app on each login. The **Reset 2FA key** button forces the user to re-scan the QR code on their next login — useful when a user gets a new mobile device.
 
-See [Two-Factor Authentication](../Security/Two-factor-authentication.md) for full setup details.
+See [Two-Factor Authentication](../Security/Two-factor-authentication) for full setup details.
 
 #### Allow Access From IP Address/Network
 
@@ -85,12 +85,14 @@ Restrict this user's login to specific IP addresses or network ranges (CIDR nota
 |---|---|
 | **IP address** | An IPv4 address or CIDR range (e.g. `192.168.1.0/24`) from which this user is allowed to log in. |
 
-| If any IP restrictions are configured, the user can only log in from those addresses. Access from all other IPs is denied. |
-| --- |
+:::note
+If any IP restrictions are configured, the user can only log in from those addresses. Access from all other IPs is denied.
+:::
 
 ## Delete a Portal User
 
 Open the user's detail page and click **Delete user** in the footer bar, then confirm the deletion.
 
-| You cannot delete your own user account. |
-| --- |
+:::note
+You cannot delete your own user account.
+:::

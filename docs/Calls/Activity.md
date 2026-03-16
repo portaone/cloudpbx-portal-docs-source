@@ -9,7 +9,7 @@ sidebar_position: 3
 
 The **Call Activity** page provides a real-time and historical view of all calls on your Cloud PBX. It is split into three tabs: current live calls, recent call history, and aggregated call statistics.
 
-Navigate to **Calls → Activity** (route: `/call-activity`).
+Navigate to **Calls → Activity**.
 
 ## Current Calls Tab
 
@@ -68,8 +68,8 @@ The **Recent Calls** tab shows the call history for the account.
 
 | Filter | Description |
 |---|---|
-| **From Date** | Start of the date/time range to search. |
-| **To Date** | End of the date/time range to search. |
+| **From date** | Start of the date/time range to search. |
+| **To date** | End of the date/time range to search. |
 | **Caller** | Filter by the calling party number or name. |
 | **Destination** | Filter by the called party number or name. |
 | **Show unsuccessful call attempts** | Include calls that did not connect (busy, no answer, rejected). |
@@ -115,6 +115,8 @@ The **Call Statistics** tab displays a bar chart of call metrics over a selected
 | **Period** | Time range: Today, Yesterday, Last 7 days, Last 14 days, Last 30 days, or Custom. |
 | **Ring group** | Limit statistics to calls routed through a specific ring group (optional). |
 | **Agent** | Limit statistics to a specific agent/extension (optional). |
+
+Click **Apply** to update the chart.
 
 Use the **Show** / **Hide** buttons next to **Incoming** and **Outgoing** to include or exclude each call direction from the chart.
 

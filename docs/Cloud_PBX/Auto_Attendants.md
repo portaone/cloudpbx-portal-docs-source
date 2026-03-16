@@ -50,8 +50,9 @@ Click "**+**" on tab "**Call flow**" or open a selected menu and open tab "**Act
 
 *e.g. When a caller presses 1, redirect them to call queue "Support".*
 
-| Enable option "Play before action" to upload a prompt that must be played prior to the selected action. |
-| --- |
+:::tip
+Enable option "Play before action" to upload a prompt that must be played prior to the selected action.
+:::
 
 ## Auto-Attendants With Menus That Have Custom Schedules
 
@@ -75,8 +76,9 @@ Open the menu that is active during business hours, and remove check box "**Tue*
 
 ![](./img/Auto_Attendants/Programming_auto-attendants-Customize_schedules.png)
 
-| Exceptions/holidays may be defined in menu "ROOT". |
-| --- |
+:::note
+Exceptions/holidays may be defined in menu "ROOT".
+:::
 
 This way, you can configure menu "**ROOT**" to process calls during weekends (and holidays) and the alternative menu – to process calls during business hours, and there's one more menu for handling calls after business hours.
 
@@ -88,7 +90,8 @@ The flow of incoming calls to an auto-attendant number is always routed to menu 
 
 If the alternative menu is not active either, the calls are routed to the menu specified in the alternative menu's option "**When the menu is inactive**", etc.
 
-| Enable option "Expand menus" to see how different menus are logically linked. |
-| --- |
+:::tip
+Enable option "Expand menus" to see how different menus are logically linked.
+:::
 
 ![](./img/Auto_Attendants/Programming_auto-attendants-Call_flow.png)

@@ -9,7 +9,7 @@ sidebar_position: 6
 
 **Call parking slots** are dedicated extension numbers that allow users to place an active call on hold and retrieve it from any phone in the Cloud PBX. A caller parks a call by transferring it to the slot number; any other user can then pick it up by dialling the same slot number.
 
-Open menu **"Cloud PBX > Call parking slots"** (route: `/parking-slots`).
+Navigate to **Cloud PBX → Call parking slots**.
 
 ## Call Parking Slots List
 

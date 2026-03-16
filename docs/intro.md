@@ -25,8 +25,9 @@ Open menu "**Inventory** \> **DID numbers**" and click "**Add new**". When activ
 
 ![](./img/Getting_started-Add_new_DID_numbers.png)
 
-| Check out your one-time activation and monthly recurring fee associated with a selected DID number. |
-| --- |
+:::tip
+Check out your one-time activation and monthly recurring fee associated with a selected DID number.
+:::
 
 You can immediately assign a selected DID number to any existing phone line. If your Cloud PBX has no phone lines yet, you will be able to add them later and then assign the selected DID numbers for proper call routing: open menu "**Inventory** \> **DID numbers**", click "**Edit**" and select a phone line to assign the DID number.
 
@@ -50,8 +51,9 @@ You can get your SIP phones automatically provisioned, without having to configu
 
 Open menu "**Inventory** \> **Devices**" and click "**Add new**". Select the model of your device and fill in the details about your SIP phone, including its MAC address.
 
-| Check out the MAC address of your SIP phone printed on a label located on the device itself: check the back, bottom, or sides of the phone for any stickers or labels that display the MAC address. It is usually a combination of letters and numbers separated by colons or dashes. |
-| --- |
+:::tip
+Check out the MAC address of your SIP phone printed on a label located on the device itself: check the back, bottom, or sides of the phone for any stickers or labels that display the MAC address. It is usually a combination of letters and numbers separated by colons or dashes.
+:::
 
 ![](./img/Getting_started-Add_new_devices.png)
 
@@ -88,7 +90,8 @@ Open the **Dashboard** or menu "**My company** \> **Portal users**". Add new por
 
 ![](./img/Getting_started-Add_new_portal_users.png)
 
-| The languages that are currently supported are English, German, and Brazilian Portuguese. If you set any other languages for portal users, English will be used for them. |
-| --- |
+:::note
+The languages that are currently supported are Croatian, English, German, Brazilian Portuguese, Thai and Ukrainian. If you set any other languages for portal users, English will be used for them.
+:::
 
 You can set up a portal user account’s activation date or define when this user becomes unusable. If you leave the expiration date empty, the user will not expire.

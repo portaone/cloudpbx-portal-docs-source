@@ -9,7 +9,7 @@ sidebar_position: 1
 
 The **Call Settings** page contains company-wide telephony configuration for your Cloud PBX. Settings here apply globally to all extensions unless overridden at the extension level.
 
-Navigate to **Calls → Settings** (route: `/call-settings`).
+Navigate to **Calls → Settings**.
 
 Click **Save** after making changes on any tab.
 

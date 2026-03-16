@@ -53,6 +53,6 @@ The **Security** tab lets you change your password and manage two-factor authent
 
 Enable the **Two-factor authentication (2FA)** toggle to add a second layer of security to your login. Once enabled, you will need to enter a one-time password (OTP) from an authenticator app (e.g. Google Authenticator) every time you sign in.
 
-See [Two-Factor Authentication](../Security/Two-factor-authentication.md) for detailed setup instructions.
+See [Two-Factor Authentication](../Security/Two-factor-authentication) for detailed setup instructions.
 
 Click **Save** to apply any changes.

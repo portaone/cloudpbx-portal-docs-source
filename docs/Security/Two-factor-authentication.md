@@ -20,8 +20,9 @@ During the next login attempt, you will be asked to enter an OTP code.
 
 ![](./img/Security-Two-factor_authentication_required.png)
 
-| If you lost access to your authenticator app, contact the service provider or another portal user who can reset your 2FA key. |
-| --- |
+:::note
+If you lost access to your authenticator app, contact the service provider or another portal user who can reset your 2FA key.
+:::
 
 ## Enable Two-Factor Authentication for Other Users
 
@@ -37,8 +38,9 @@ If you need to replace your mobile device where you installed your authenticator
 
 ![](./img/Security-Two-factor_authentication_reset_key.png)
 
-| When a valid OTP code is provided, you will be logged out and will need to log in again. |
-| --- |
+:::note
+When a valid OTP code is provided, you will be logged out and will need to log in again.
+:::
 
 During the next login attempt, you will be asked to scan a QR code and then enter an OTP code.
 
