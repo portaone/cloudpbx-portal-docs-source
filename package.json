@@ -12,7 +12,25 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "screenshots": "playwright test --config=screenshot-gen/playwright.config.ts",
+    "screenshots:sip-trunks": "playwright test --config=screenshot-gen/playwright.config.ts capture-sip-trunks",
+    "screenshots:billing": "playwright test --config=screenshot-gen/playwright.config.ts capture-billing",
+    "screenshots:my-profile": "playwright test --config=screenshot-gen/playwright.config.ts capture-my-profile",
+    "screenshots:portal-users": "playwright test --config=screenshot-gen/playwright.config.ts capture-portal-users",
+    "screenshots:company-info": "playwright test --config=screenshot-gen/playwright.config.ts capture-company-info",
+    "screenshots:extensions": "playwright test --config=screenshot-gen/playwright.config.ts capture-extensions",
+    "screenshots:ring-groups": "playwright test --config=screenshot-gen/playwright.config.ts capture-ring-groups",
+    "screenshots:fax-mailboxes": "playwright test --config=screenshot-gen/playwright.config.ts capture-fax-mailboxes",
+    "screenshots:call-parking-slots": "playwright test --config=screenshot-gen/playwright.config.ts capture-call-parking-slots",
+    "screenshots:call-settings": "playwright test --config=screenshot-gen/playwright.config.ts capture-call-settings",
+    "screenshots:call-activity": "playwright test --config=screenshot-gen/playwright.config.ts capture-call-activity",
+    "screenshots:did-numbers": "playwright test --config=screenshot-gen/playwright.config.ts capture-did-numbers",
+    "screenshots:recordings": "playwright test --config=screenshot-gen/playwright.config.ts capture-recordings",
+    "screenshots:voicemail": "playwright test --config=screenshot-gen/playwright.config.ts capture-voicemail",
+    "screenshots:devices": "playwright test --config=screenshot-gen/playwright.config.ts capture-devices",
+    "screenshots:device-profiles": "playwright test --config=screenshot-gen/playwright.config.ts capture-device-profiles",
+    "screenshots:device-phone-books": "playwright test --config=screenshot-gen/playwright.config.ts capture-device-phone-books"
   },
   "dependencies": {
     "@docusaurus/core": "^2.4.3",
@@ -26,7 +44,9 @@
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^2.4.3",
+    "@playwright/test": "^1.50.1",
     "@tsconfig/docusaurus": "^1.0.5",
+    "dotenv": "^16.0.0",
     "typescript": "^4.7.4"
   },
   "browserslist": {
