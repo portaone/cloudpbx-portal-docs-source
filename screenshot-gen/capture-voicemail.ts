@@ -15,6 +15,7 @@
 import { test, expect, Page } from '@playwright/test';
 import * as path from 'path';
 import * as fs from 'fs';
+import { sidebarNavigate } from './nav';
 
 const OUTPUT = path.resolve(__dirname, '../docs/Cloud_PBX/img/Voicemail');
 fs.mkdirSync(OUTPUT, { recursive: true });
@@ -50,6 +51,9 @@ test('Voicemail', async ({ page }) => {
   await waitReady(page);
 
   // ── Navigate to the extension detail page ─────────────────────────────────
+  // First click Cloud PBX → Extensions in the sidebar so it shows expanded and
+  // Extensions is highlighted as the active section, then go to the detail page.
+  await sidebarNavigate(page, 'Cloud PBX', '/extensions');
   await page.goto(`/extensions/${EXTENSION_WITH_VOICEMAIL}`);
   await waitReady(page);
 

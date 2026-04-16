@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as dotenv from 'dotenv';
+import { sidebarNavigate } from './nav';
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
@@ -17,8 +18,8 @@ test('capture billing screenshots', async ({ page }) => {
   await page.getByRole('button', { name: 'Sign in' }).click();
   await page.waitForURL('**/dashboard');
 
-  // Navigate to Billing
-  await page.goto(process.env.BASE_URL + '/billing');
+  // Navigate to Billing via sidebar (expands My company, highlights Billing)
+  await sidebarNavigate(page, 'My company', '/billing');
   await page.waitForSelector('[data-testid="loader"]', { state: 'detached' });
   await page.waitForTimeout(800);
 

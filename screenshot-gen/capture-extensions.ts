@@ -2,6 +2,7 @@ import { test } from '@playwright/test';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
+import { sidebarNavigate } from './nav';
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
@@ -17,8 +18,8 @@ test('capture extensions screenshots', async ({ page }) => {
   await page.getByRole('button', { name: 'Sign in' }).click();
   await page.waitForURL('**/dashboard');
 
-  // Navigate to Extensions list
-  await page.goto(process.env.BASE_URL + '/extensions');
+  // Navigate to Extensions via sidebar (expands Cloud PBX, highlights Extensions)
+  await sidebarNavigate(page, 'Cloud PBX', '/extensions');
   await page.waitForSelector('[data-testid="loader"]', { state: 'detached' });
   // Wait for the data grid rows to appear (MUI DataGrid loads after the global loader)
   await page.waitForSelector('tbody tr', { state: 'visible' });

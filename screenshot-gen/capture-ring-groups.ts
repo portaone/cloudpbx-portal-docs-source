@@ -2,6 +2,7 @@ import { test } from '@playwright/test';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
+import { sidebarNavigate } from './nav';
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
@@ -17,8 +18,8 @@ test('capture ring-groups screenshots', async ({ page }) => {
   await page.getByRole('button', { name: 'Sign in' }).click();
   await page.waitForURL('**/dashboard');
 
-  // Navigate to Ring Groups list
-  await page.goto(process.env.BASE_URL + '/ring-groups');
+  // Navigate to Ring Groups via sidebar (expands Cloud PBX, highlights Ring groups)
+  await sidebarNavigate(page, 'Cloud PBX', '/ring-groups');
   await page.waitForSelector('[data-testid="loader"]', { state: 'detached' });
   // Wait for the table rows to be visible
   await page.waitForSelector('tbody tr', { state: 'visible' });

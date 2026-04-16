@@ -2,6 +2,7 @@ import { test } from '@playwright/test';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
+import { sidebarNavigate } from './nav';
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
@@ -17,8 +18,8 @@ test('capture portal-users screenshots', async ({ page }) => {
   await page.getByRole('button', { name: 'Sign in' }).click();
   await page.waitForURL('**/dashboard');
 
-  // Navigate to Portal Users list
-  await page.goto(process.env.BASE_URL + '/portal-users');
+  // Navigate to Portal Users via sidebar (expands My company, highlights Portal users)
+  await sidebarNavigate(page, 'My company', '/portal-users');
   await page.waitForSelector('[data-testid="loader"]', { state: 'detached' });
   // Wait for table rows AND for any lingering spinners to disappear
   await page.waitForSelector('tbody tr', { state: 'visible' });

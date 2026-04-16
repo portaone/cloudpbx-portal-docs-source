@@ -13,6 +13,7 @@
 import { test, expect, Page } from '@playwright/test';
 import * as path from 'path';
 import * as fs from 'fs';
+import { sidebarNavigate } from './nav';
 
 const OUTPUT = path.resolve(__dirname, '../docs/Inventory/img/Devices');
 fs.mkdirSync(OUTPUT, { recursive: true });
@@ -45,7 +46,8 @@ test('Devices', async ({ page }) => {
   await waitReady(page);
 
   // ── Devices list ──────────────────────────────────────────────────────────
-  await page.goto('/devices');
+  // Navigate via sidebar (expands Inventory, highlights Devices)
+  await sidebarNavigate(page, 'Inventory', '/devices');
   await waitReady(page);
   await capture(page, 'devices-list');
 

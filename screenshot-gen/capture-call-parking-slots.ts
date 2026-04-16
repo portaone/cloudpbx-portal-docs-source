@@ -2,6 +2,7 @@ import { test } from '@playwright/test';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
+import { sidebarNavigate } from './nav';
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
@@ -17,8 +18,8 @@ test('capture call-parking-slots screenshots', async ({ page }) => {
   await page.getByRole('button', { name: 'Sign in' }).click();
   await page.waitForURL('**/dashboard');
 
-  // Navigate to Call Parking Slots list
-  await page.goto(process.env.BASE_URL + '/parking-slots');
+  // Navigate to Call Parking Slots via sidebar (expands Cloud PBX, highlights Call parking slots)
+  await sidebarNavigate(page, 'Cloud PBX', '/parking-slots');
   // Wait for table rows to confirm the page has fully rendered
   const addNewBtn = page.locator('button').filter({ hasText: /Add new/i });
   await addNewBtn.waitFor({ state: 'visible', timeout: 20000 });

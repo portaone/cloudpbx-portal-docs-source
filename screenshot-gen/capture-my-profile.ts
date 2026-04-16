@@ -2,6 +2,7 @@ import { test } from '@playwright/test';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
+import { sidebarNavigate } from './nav';
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
@@ -17,8 +18,8 @@ test('capture my-profile screenshots', async ({ page }) => {
   await page.getByRole('button', { name: 'Sign in' }).click();
   await page.waitForURL('**/dashboard');
 
-  // Navigate to My Profile
-  await page.goto(process.env.BASE_URL + '/my-profile');
+  // Navigate to My Profile via sidebar (expands My company, highlights My profile)
+  await sidebarNavigate(page, 'My company', '/my-profile');
   await page.waitForSelector('[data-testid="loader"]', { state: 'detached' });
 
   // --- Settings tab (default) ---

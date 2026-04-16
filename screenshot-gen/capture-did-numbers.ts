@@ -2,6 +2,7 @@ import { test } from '@playwright/test';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
+import { sidebarNavigate } from './nav';
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
@@ -25,8 +26,8 @@ test('capture did-numbers screenshots', async ({ page }) => {
     }
   };
 
-  // Navigate to DID Numbers list
-  await page.goto(process.env.BASE_URL + '/did-numbers');
+  // Navigate to DID Numbers via sidebar (expands Inventory, highlights DID numbers)
+  await sidebarNavigate(page, 'Inventory', '/did-numbers');
   await page.waitForSelector('[data-testid="loader"]', { state: 'detached' });
   await page.waitForSelector('tbody tr', { state: 'visible' });
   await page.waitForTimeout(600);

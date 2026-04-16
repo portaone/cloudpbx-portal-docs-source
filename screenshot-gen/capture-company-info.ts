@@ -2,6 +2,7 @@ import { test } from '@playwright/test';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
+import { sidebarNavigate } from './nav';
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
@@ -25,8 +26,8 @@ test('capture company-info screenshots', async ({ page }) => {
     }
   };
 
-  // Navigate to Company Info (route is /my-company)
-  await page.goto(process.env.BASE_URL + '/my-company');
+  // Navigate to Company Info via sidebar (expands My company, highlights Company info)
+  await sidebarNavigate(page, 'My company', '/my-company');
   await page.waitForSelector('[data-testid="loader"]', { state: 'detached' });
   await page.waitForLoadState('networkidle');
   await waitForSpinner();

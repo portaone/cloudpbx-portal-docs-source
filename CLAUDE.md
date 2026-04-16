@@ -5,7 +5,7 @@ This file contains instructions and lessons learned for AI-assisted work in this
 ## Project Overview
 
 Docusaurus (classic preset) documentation site for the PortaOne Cloud PBX admin portal.
-The portal source code lives one level up at `../` (the `ip-centrex-admin-portal` repo).
+The portal source code lives two levels up at `../../ip-centrex-admin-portal/` (the `ip-centrex-admin-portal` repo).
 Deployed to GitHub Pages at `portaone/cloudpbx-portal-docs`.
 
 ---
@@ -131,9 +131,9 @@ Search `docs.portaone.com` for the underlying PortaSwitch/PortaBilling concepts 
 ### Step 3 — Read the portal source
 
 Cross-reference with source code to confirm selectors, routes, and any fields not visible in a default state:
-- Translation keys: `../src/translations/`
-- E2E page objects: `../e2e_tests/`
-- Routes: `../src/routes/routes.ts`
+- Translation keys: `../../ip-centrex-admin-portal/src/translations/`
+- E2E page objects: `../../ip-centrex-admin-portal/e2e_tests/`
+- Routes: `../../ip-centrex-admin-portal/src/routes/routes.ts`
 
 ### Step 4 — Write the doc
 
@@ -166,6 +166,10 @@ npm run screenshots:extensions
 npm run screenshots
 ```
 
+> **Note:** Running all 17 tests in a single `npm run screenshots` call can die silently after a few
+> tests without surfacing an error. If that happens, run the individual `screenshots:<feature>` scripts
+> one at a time (or in small batches with `&&`) instead.
+
 **Available screenshot scripts** (in `package.json`):
 
 | Script | Status |
@@ -196,34 +200,73 @@ npm run screenshots
 
 ## Playwright Patterns and Lessons Learned
 
+### Sidebar navigation
+
+Always navigate to list pages by clicking through the sidebar rather than using `page.goto()` directly.
+This ensures screenshots show the correct section expanded and the active item highlighted.
+
+Import the helper at the top of each capture script:
+
+```typescript
+import { sidebarNavigate } from './nav';
+```
+
+Usage:
+```typescript
+// Section with submenu (Cloud PBX, Calls, Inventory, My company)
+await sidebarNavigate(page, 'Cloud PBX', '/ring-groups');
+
+// Direct nav item with no parent section (SIP trunks)
+await sidebarNavigate(page, null, '/sip-trunks');
+```
+
+The function expands the section if it is collapsed, then clicks the link, waits for the URL to match,
+and moves the mouse to `(800, 400)` (main content area). This last step is essential: the portal's
+sidebar hover style is **visually identical** to the active style (both use the same background colour),
+so leaving the cursor over any sidebar item after clicking would make it look highlighted in screenshots.
+
+For detail pages reached after the initial list navigation (e.g. `page.goto('/extensions/1000')`),
+the sidebar state persists — no need to call `sidebarNavigate` again.
+
+**Sidebar section → links map:**
+| Section | Links |
+|---|---|
+| Cloud PBX | /extensions, /ring-groups, /auto-attendants, /fax-mailboxes, /phone-book, /parking-slots, /wallboard |
+| Calls | /call-settings, /call-recordings, /call-activity |
+| Inventory | /devices, /device-profiles, /device-phone-books, /did-numbers |
+| My company | /my-profile, /portal-users, /my-company, /billing |
+| (direct) | /sip-trunks |
+
+---
+
 ### Standard script structure
 
 ```typescript
 import { test } from '@playwright/test';
 import * as path from 'path';
-import * as dotenv from 'dotenv';
 import * as fs from 'fs';
-
-dotenv.config({ path: path.resolve(__dirname, '.env') });
+import { sidebarNavigate } from './nav';
 
 const OUTPUT = path.resolve(__dirname, '../docs/<Section>/img/<Feature>');
+fs.mkdirSync(OUTPUT, { recursive: true });
 
 test('capture <feature> screenshots', async ({ page }) => {
-  fs.mkdirSync(OUTPUT, { recursive: true });
-
-  // Login
-  await page.goto(process.env.BASE_URL + '/login');
+  // Login (baseURL is set in playwright.config.ts)
+  await page.goto('/');
   await page.locator('#login').fill(process.env.CUSTOMER_USR!);
   await page.locator('#password').fill(process.env.CUSTOMER_PWD!);
   await page.getByRole('button', { name: 'Sign in' }).click();
   await page.waitForURL('**/dashboard');
 
-  // Navigate to page
-  await page.goto(process.env.BASE_URL + '/your-route');
+  // Navigate via sidebar (expands section, highlights target item, moves mouse away)
+  await sidebarNavigate(page, 'Section name', '/your-route');
   await page.waitForSelector('[data-testid="loader"]', { state: 'detached' });
   // ...
 });
 ```
+
+Credentials are loaded from `screenshot-gen/.env` first; `playwright.config.ts` falls back to the
+project root `.env` if that file is absent.
 
 ### Waiting for spinners (MUI CircularProgress)
 
@@ -302,7 +345,7 @@ Prefer direct URL navigation to detail pages when available (`/fax-mailboxes/<id
 
 ## Portal Routes Reference
 
-Always verify routes against `../src/routes/routes.ts`. Complete route list:
+Always verify routes against `../../ip-centrex-admin-portal/src/routes/routes.ts`. Complete route list:
 
 | Feature | Actual route |
 |---|---|
@@ -340,8 +383,8 @@ Always verify routes against `../src/routes/routes.ts`. Complete route list:
 
 Do not invent labels. Check in order:
 
-1. **Translation keys:** `../src/translations/en.json` (or per-screen translation files)
-2. **Component source:** `../src/` — search for the field name or `data-testid`
+1. **Translation keys:** `../../ip-centrex-admin-portal/src/translations/en.json` (or per-screen translation files)
+2. **Component source:** `../../ip-centrex-admin-portal/src/` — search for the field name or `data-testid`
 3. **Live portal:** browse `https://cloudpbx.portaone.com` with browser tools
 
 Example: the filter field internally called "extension" is labelled **Agent** in the call activity UI.

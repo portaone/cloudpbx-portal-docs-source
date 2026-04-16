@@ -12,6 +12,7 @@
 import { test, expect, Page } from '@playwright/test';
 import * as path from 'path';
 import * as fs from 'fs';
+import { sidebarNavigate } from './nav';
 
 const OUTPUT = path.resolve(__dirname, '../docs/SIP_Trunks/img/SIP_Trunks');
 fs.mkdirSync(OUTPUT, { recursive: true });
@@ -46,7 +47,8 @@ test('SIP Trunks', async ({ page }) => {
   await waitReady(page);
 
   // ── SIP Trunks list ───────────────────────────────────────────────────────
-  await page.goto('/sip-trunks');
+  // SIP trunks is a direct nav item (no parent section to expand)
+  await sidebarNavigate(page, null, '/sip-trunks');
   await waitReady(page);
   await capture(page, 'sip-trunks-list');
 

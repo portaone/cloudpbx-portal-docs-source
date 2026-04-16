@@ -2,6 +2,7 @@ import { test } from '@playwright/test';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
+import { sidebarNavigate } from './nav';
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
@@ -17,8 +18,8 @@ test('capture fax-mailboxes screenshots', async ({ page }) => {
   await page.getByRole('button', { name: 'Sign in' }).click();
   await page.waitForURL('**/dashboard');
 
-  // Navigate to Fax Mailboxes list
-  await page.goto(process.env.BASE_URL + '/fax-mailboxes');
+  // Navigate to Fax Mailboxes via sidebar (expands Cloud PBX, highlights Fax mailboxes)
+  await sidebarNavigate(page, 'Cloud PBX', '/fax-mailboxes');
   await page.waitForSelector('[data-testid="loader"]', { state: 'detached' });
   await page.waitForLoadState('networkidle');
   const addNewBtn = page.locator('button').filter({ hasText: /Add new/i });

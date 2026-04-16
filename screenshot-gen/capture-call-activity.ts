@@ -2,6 +2,7 @@ import { test } from '@playwright/test';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
+import { sidebarNavigate } from './nav';
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
@@ -17,8 +18,8 @@ test('capture call-activity screenshots', async ({ page }) => {
   await page.getByRole('button', { name: 'Sign in' }).click();
   await page.waitForURL('**/dashboard');
 
-  // Navigate to Call Activity
-  await page.goto(process.env.BASE_URL + '/call-activity');
+  // Navigate to Call Activity via sidebar (expands Calls, highlights Activity)
+  await sidebarNavigate(page, 'Calls', '/call-activity');
   await page.waitForSelector('[data-testid="loader"]', { state: 'detached' }).catch(() => {});
   await page.waitForLoadState('networkidle');
   await page.waitForSelector('.MuiCircularProgress-root', { state: 'detached', timeout: 15000 }).catch(() => {});
