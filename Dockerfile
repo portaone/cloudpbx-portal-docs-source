@@ -12,6 +12,6 @@ FROM nginx:mainline-alpine
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /usr/src/app/build /usr/share/nginx/html
 COPY --from=build /usr/src/app/scripts/init_container.sh /
-RUN apk add bash
+RUN apk upgrade --no-cache && apk add --no-cache bash
 
 CMD ["bash", "init_container.sh"]
